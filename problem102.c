@@ -17,45 +17,37 @@ int main()
 {
 	struct bin bin1, bin2, bin3;
 	int B=0, G=0, C=0, i=1, movesQtt=0;
-	char filename[20], c, bestMove[4];
-	FILE * fp;
-	scanf("%s", filename);
-	fp = fopen(filename, "r");
-	if(fp == NULL) perror("Nao foi possivel abrir o arquivo.");
-	else
+	char c, bestMove[4];
+	while(c != EOF)
 	{
-		while(c != EOF)
+		fscanf(stdin, "%d", &B);
+		fscanf(stdin, "%d", &G);
+		fscanf(stdin, "%d", &C);
+		c = fgetc(stdin);
+		if(i%3 == 1)
 		{
-			fscanf(fp, "%d", &B);
-			fscanf(fp, "%d", &G);
-			fscanf(fp, "%d", &C);
-			c = fgetc(fp);
-			if(i%3 == 1)
-			{
-				bin1.bB = B;
-				bin1.gB = G;
-				bin1.cB = C;
-			}
-			else if(i%3 == 2)
-			{
-				bin2.bB = B;
-				bin2.gB = G;
-				bin2.cB = C;
-			}
-			else
-			{
-				bin3.bB = B;
-				bin3.gB = G;
-				bin3.cB = C;
-			}
-			if(i%3 == 0)
-			{
-				movesQtt = moveEnch(bin1, bin2, bin3, bestMove);
-				printf("%s %d\n", bestMove, movesQtt);
-			}
-			i++;
+			bin1.bB = B;
+			bin1.gB = G;
+			bin1.cB = C;
 		}
-	fclose(fp);
+		else if(i%3 == 2)
+		{
+			bin2.bB = B;
+			bin2.gB = G;
+			bin2.cB = C;
+		}
+		else
+		{
+			bin3.bB = B;
+			bin3.gB = G;
+			bin3.cB = C;
+		}
+		if(i%3 == 0)
+		{
+			movesQtt = moveEnch(bin1, bin2, bin3, bestMove);
+			printf("%s %d\n", bestMove, movesQtt);
+		}
+		i++;
 	}
 	return(0);
 }
@@ -83,11 +75,11 @@ int moveEnch(struct bin bin1, struct bin bin2, struct bin bin3, char * move)
 	int vector[] = {op1, op2, op3, op4, op5, op6};
 	qsort(vector, 6, sizeof(int), compare);
 	
-	if(vector[0] == op1) strcpy(move, "BGC");
-	else if(vector[0] == op2) strcpy(move, "BCG");
-	else if(vector[0] == op3) strcpy(move, "GCB");
-	else if(vector[0] == op4) strcpy(move, "GBC");
+	if(vector[0] == op2) strcpy(move, "BCG");
+	else if(vector[0] == op1) strcpy(move, "BGC");
+	else if(vector[0] == op6) strcpy(move, "CBG");
 	else if(vector[0] == op5) strcpy(move, "CGB");
-	else move = "CBG";
+	else if(vector[0] == op4) strcpy(move, "GBC");
+	else strcpy(move, "GCB");
 	return vector[0];
 }
