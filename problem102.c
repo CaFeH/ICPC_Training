@@ -60,17 +60,17 @@ int compare (const void * a, const void * b)
 int moveEnch(struct bin bin1, struct bin bin2, struct bin bin3, char * move)
 {
 	int op1, op2, op3, op4, op5, op6, i;
-	//BGC
+
 	op1 = (bin2.bB + bin3.bB) + (bin1.gB + bin3.gB) + (bin1.cB + bin2.cB);
-	//BCG
+
 	op2 = (bin2.bB + bin3.bB) + (bin1.cB + bin3.cB) + (bin1.gB + bin2.gB);
-	//GCB
+
 	op3 = (bin2.gB + bin3.gB) + (bin1.cB + bin3.cB) + (bin1.bB + bin2.bB);
-	//GBC
+
 	op4 = (bin2.gB + bin3.gB) + (bin1.bB + bin3.bB) + (bin1.cB + bin2.cB);
-	//CGB
+
 	op5 = (bin2.cB + bin3.cB) + (bin1.gB + bin3.gB) + (bin1.bB + bin2.bB);
-	//CBG
+
 	op6 = (bin2.cB + bin3.cB) + (bin1.bB + bin3.bB) + (bin1.gB + bin2.gB);
 	int vector[] = {op1, op2, op3, op4, op5, op6};
 	qsort(vector, 6, sizeof(int), compare);
