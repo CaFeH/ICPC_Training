@@ -1,4 +1,4 @@
 ICPC_Trainning
 ==============
 
-Exercises for the ICPC
+Repository for storage of my ICPC problems.
