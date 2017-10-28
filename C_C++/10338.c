@@ -32,9 +32,9 @@ int count_repetitions(char* str)
 
 unsigned long int permutation_with_repetition(char* str)
 {
-    char s[21];
+    char s[21]="";
     int repet[21]; 
-    unsigned long int fact_repet=0;
+    unsigned long int fact_repet=1;
     int len, i;
     len = strlen(str);
     for(i=0; i<len; i++)
